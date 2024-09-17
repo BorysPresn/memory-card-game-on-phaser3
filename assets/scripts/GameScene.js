@@ -118,7 +118,16 @@ class GameScene extends Phaser.Scene {
     }
 
     createBackground() {
-        this.add.sprite(0, 0, 'bg').setOrigin(0, 0);
+        let bg = this.add.sprite(0, 0, 'bg').setOrigin(0, 0);
+         // Получаем размеры экрана
+        let scaleX = this.scale.width / bg.width;
+        let scaleY = this.scale.height / bg.height;
+        
+        // Выбираем меньшее значение, чтобы сохранить пропорции
+        let scale = Math.max(scaleX, scaleY);
+        
+        // Применяем масштабирование
+        bg.setScale(scale).setScrollFactor(0);
     }
 
     createCards(){

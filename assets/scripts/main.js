@@ -54,7 +54,13 @@ let config = {
             timeout: 8
         }
     ],
-    scene: new GameScene()
+    scene: new GameScene(),
+    scale: {
+        mode: Phaser.Scale.FIT, // масштабирует канвас, чтобы он помещался на экране
+        autoCenter: Phaser.Scale.CENTER_BOTH, // центрирование по горизонтали и вертикали
+        width: window.innerWidth, // динамическая ширина
+        height: window.innerHeight // динамическая высота
+    }
 };
 
 let game = new Phaser.Game(config);
