@@ -58,8 +58,6 @@ let config = {
     scale: {
         mode: Phaser.Scale.FIT, // масштабирует канвас, чтобы он помещался на экране
         autoCenter: Phaser.Scale.CENTER_BOTH, // центрирование по горизонтали и вертикали
-        width: window.innerWidth, // динамическая ширина
-        height: window.innerHeight // динамическая высота
     }
 };
 
