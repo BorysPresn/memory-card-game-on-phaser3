@@ -62,6 +62,7 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+<<<<<<< HEAD
 
 window.addEventListener('resize', () => {
     // game.scale.resize(window.innerWidth, window.innerHeight);
@@ -102,3 +103,5 @@ window.addEventListener('orientationchange', () => {
         }
     });
 });
+=======
+>>>>>>> b413d37f8bf23e8835a5a12e36109abfaae5dcd9
