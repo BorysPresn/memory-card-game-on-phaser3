@@ -22,6 +22,8 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
+        this.scale.lockOrientation('landscape');
+        
         this.timeout = config.timeout;
         this.createSounds();
         this.createTimer();
@@ -32,6 +34,8 @@ class GameScene extends Phaser.Scene {
         // console.log(this);
     }
     restart() {
+        if(!this.isStarted) return;
+        this.isStarted = false;
         let count = 0;
         let onCardMoveComplete = () => {
             ++count;
@@ -58,6 +62,7 @@ class GameScene extends Phaser.Scene {
         this.initCards();
         this.showCards();
         this.levelText.setText('Level: ' + (this.currentLevel + 1));
+        this.isStarted = true;
     }
     showCards() {
         this.cards.forEach(card => {
@@ -118,16 +123,7 @@ class GameScene extends Phaser.Scene {
     }
 
     createBackground() {
-        let bg = this.add.sprite(0, 0, 'bg').setOrigin(0, 0);
-         // Получаем размеры экрана
-        let scaleX = this.scale.width / bg.width;
-        let scaleY = this.scale.height / bg.height;
-        
-        // Выбираем меньшее значение, чтобы сохранить пропорции
-        let scale = Math.max(scaleX, scaleY);
-        
-        // Применяем масштабирование
-        bg.setScale(scale).setScrollFactor(0);
+        this.add.sprite(0, 0, 'bg').setOrigin(0, 0);
     }
 
     createCards(){

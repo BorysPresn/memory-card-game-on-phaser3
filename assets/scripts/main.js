@@ -58,9 +58,47 @@ let config = {
     scale: {
         mode: Phaser.Scale.FIT, // масштабирует канвас, чтобы он помещался на экране
         autoCenter: Phaser.Scale.CENTER_BOTH, // центрирование по горизонтали и вертикали
-        width: window.innerWidth, // динамическая ширина
-        height: window.innerHeight // динамическая высота
     }
 };
 
 let game = new Phaser.Game(config);
+
+window.addEventListener('resize', () => {
+    // game.scale.resize(window.innerWidth, window.innerHeight);
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    
+    game.scale.resize(width, height);
+    
+    // Опционально: сброс зума, если это всё ещё проблема
+    game.scale.setZoom(1);
+    
+    // Принудительная перерисовка сцены
+    game.scene.scenes.forEach((scene) => {
+        if (scene.scene.settings.active) {
+            scene.cameras.main.setViewport(0, 0, width, height);
+        }
+    });
+});
+window.addEventListener('orientationchange', () => {
+    // Обновляем размеры игры и масштаб
+    // setTimeout(() => {
+    //     game.scale.resize(window.innerWidth, window.innerHeight);
+    //     game.scale.setZoom(1);  // сброс масштаба после изменения ориентации
+    // }, 500);
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    
+    game.scale.resize(width, height);
+    
+    // Опционально: сброс зума, если это всё ещё проблема
+    game.scale.setZoom(1);
+    
+    // Принудительная перерисовка сцены
+    game.scene.scenes.forEach((scene) => {
+        if (scene.scene.settings.active) {
+            scene.cameras.main.setViewport(0, 0, width, height);
+        }
+    });
+});
